@@ -46,16 +46,16 @@
 // Inputs
 AudioSynthWaveform          waveform1; // To create the "beep" sfx
 AudioInputI2S               i2s2; // I2S input from microphone on audio shield
-AudioPlaySdWavX              playWav1; // Play 44.1kHz 16-bit PCM greeting WAV file
+AudioPlaySdWavX             playWav1; // Play 44.1kHz 16-bit PCM greeting WAV file
 AudioRecordQueue            queue1; // Creating an audio buffer in memory before saving to SD
 AudioMixer4                 mixer; // Allows merging several inputs to same output
 AudioOutputI2S              i2s1; // I2S interface to Speaker/Line Out on Audio shield
-AudioConnection patchCord1(waveform1, 0, mixer, 0); // wave to mixer 
-AudioConnection patchCord3(playWav1, 0, mixer, 1); // wav file playback mixer
-AudioConnection patchCord4(mixer, 0, i2s1, 0); // mixer output to speaker (L)
-AudioConnection patchCord6(mixer, 0, i2s1, 1); // mixer output to speaker (R)
-AudioConnection patchCord5(i2s2, 0, queue1, 0); // mic input to queue (L)
-AudioControlSGTL5000      sgtl5000_1;
+AudioConnection             patchCord1(waveform1, 0, mixer, 0); // wave to mixer 
+AudioConnection             patchCord3(playWav1, 0, mixer, 1); // wav file playback mixer
+AudioConnection             patchCord4(mixer, 0, i2s1, 0); // mixer output to speaker (L)
+AudioConnection             patchCord6(mixer, 0, i2s1, 1); // mixer output to speaker (R)
+AudioConnection             patchCord5(i2s2, 0, queue1, 0); // mic input to queue (L)
+AudioControlSGTL5000        sgtl5000_1;
 
 // Filename to save audio recording on SD card
 char filename[15];
@@ -141,13 +141,13 @@ void setup() {
 
   // Add SD Card
 //    MTP.addFilesystem(SD, "SD Card");
-    MTP.addFilesystem(SD, "Kais Audio guestbook"); // choose a nice name for the SD card volume to appear in your file explorer
+    MTP.addFilesystem(SD, "Wilrah Audio guestbook"); // choose a nice name for the SD card volume to appear in your file explorer
     Serial.println("Added SD card via MTP");
     MTPcheckInterval = MTP.storage()->get_DeltaDeviceCheckTimeMS();
     
     // Value in dB
 //  sgtl5000_1.micGain(15);
-  sgtl5000_1.micGain(5); // much lower gain is required for the AOM5024 electret capsule
+  sgtl5000_1.micGain(10); // much lower gain is required for the AOM5024 electret capsule
 
   // Synchronise the Time object used in the program code with the RTC time provider.
   // See https://github.com/PaulStoffregen/Time
