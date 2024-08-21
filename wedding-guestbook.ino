@@ -21,7 +21,7 @@
  * 
  */
 
-#include <Bounce.h>
+#include <Bounce2.h>
 #include <Audio.h>
 #include <Wire.h>
 #include <SPI.h>
@@ -517,22 +517,22 @@ void writeOutHeader() { // update WAV header with final filesize/datasize
 }
 
 void end_Beep(void) {
-          waveform1.frequency(523.25);
-        waveform1.amplitude(beep_volume);
-        wait(250);
-        waveform1.amplitude(0);
-        wait(250);
-        waveform1.amplitude(beep_volume);
-        wait(250);
-        waveform1.amplitude(0);
-        wait(250);
-        waveform1.amplitude(beep_volume);
-        wait(250);
-        waveform1.amplitude(0);
-        wait(250);
-        waveform1.amplitude(beep_volume);
-        wait(250);
-        waveform1.amplitude(0);
+  waveform1.frequency(523.25);
+  waveform1.amplitude(beep_volume);
+  wait(250);
+  waveform1.amplitude(0);
+  wait(250);
+  waveform1.amplitude(beep_volume);
+  wait(250);
+  waveform1.amplitude(0);
+  wait(250);
+  waveform1.amplitude(beep_volume);
+  wait(250);
+  waveform1.amplitude(0);
+  wait(250);
+  waveform1.amplitude(beep_volume);
+  wait(250);
+  waveform1.amplitude(0);
 }
 
 void print_mode(void) { // only for debugging
