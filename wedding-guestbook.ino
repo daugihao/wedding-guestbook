@@ -88,7 +88,7 @@ unsigned long recByteSaved = 0L;
 unsigned long NumSamples = 0L;
 
 unsigned long startRecordingTime = 0;
-unsigned long timerDuration = 60000; // Example: 5000 milliseconds (5 seconds)
+unsigned long timerDuration = 120000; // Example: 5000 milliseconds (5 seconds)
 
 byte byte1, byte2, byte3, byte4;
 
