@@ -86,6 +86,10 @@ unsigned int blockAlign = numChannels*bitsPerSample/8;
 unsigned long Subchunk2Size = 0L;
 unsigned long recByteSaved = 0L;
 unsigned long NumSamples = 0L;
+
+unsigned long startRecordingTime = 0;
+unsigned long timerDuration = 60000; // Example: 5000 milliseconds (5 seconds)
+
 byte byte1, byte2, byte3, byte4;
 
 
@@ -216,7 +220,7 @@ void loop() {
 
     case Mode::Recording:
       // Handset is replaced
-      if(buttonRecord.risingEdge()){
+      if(buttonRecord.risingEdge() || checkTimer()){
         // Debug log
         Serial.println("Stopping Recording");
         // Stop recording
@@ -259,7 +263,20 @@ void setMTPdeviceChecks(bool nable)
 static uint32_t worstSDwrite, printNext;
 #endif // defined(INSTRUMENT_SD_WRITE)
 
+void startTimer() {
+    startRecordingTime = millis();
+}
+
+bool checkTimer() {
+    if (millis() - startRecordingTime >= timerDuration) {
+        return true; // Timer has expired
+    } else {
+        return false; // Timer is still running
+    }
+}
+
 void startRecording() {
+  startTimer();
   setMTPdeviceChecks(false); // disable MTP device checks while recording
 #if defined(INSTRUMENT_SD_WRITE)
   worstSDwrite = 0;
